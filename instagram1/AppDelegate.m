@@ -23,17 +23,13 @@
         configuration.server = @"https://instagram-rg.herokuapp.com/parse";
     }];
     [Parse initializeWithConfiguration:config];
-    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
-    gameScore[@"score"] = @1337;
-    gameScore[@"playerName"] = @"Sean Plott";
-    gameScore[@"cheatMode"] = @NO;
-    [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"Object saved!");
-        } else {
-            NSLog(@"Error: %@", error.description);
-        }
-    }];
+
+    //check if user is logged in to persist their session
+    if (PFUser.currentUser) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewControllerNavigationVC"];
+    }
     return YES;
 }
 

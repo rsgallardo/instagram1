@@ -86,7 +86,7 @@
         <!--Home Feed View Controller-->
         <scene sceneID="HJQ-iV-xpw">
             <objects>
-                <viewController id="9F4-5u-lZd" customClass="HomeFeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeFeedViewController" id="9F4-5u-lZd" customClass="HomeFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3QC-0R-EbJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,7 +108,7 @@
         <!--Navigation Controller-->
         <scene sceneID="8cl-XH-Y4t">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9La-bc-Glt" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeFeedViewControllerNavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="9La-bc-Glt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hl9-ys-gFK">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
