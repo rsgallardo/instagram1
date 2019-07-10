@@ -38,6 +38,10 @@
     [self loginUser];
 }
 
+- (IBAction)didTapBackground:(id)sender {
+    [self.view endEditing: YES];
+}
+
 - (void)registerUser {
     // initialize a user object
     PFUser *newUser = [PFUser user];

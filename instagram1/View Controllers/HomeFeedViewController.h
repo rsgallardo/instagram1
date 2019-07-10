@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeFeedViewController : UIViewController
+@interface HomeFeedViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *posts;
 - (IBAction)didTapLogout:(id)sender;
+- (IBAction)didTapCamera:(id)sender;
 
 @end
 
