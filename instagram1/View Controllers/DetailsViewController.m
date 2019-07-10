@@ -21,6 +21,14 @@
     // Do any additional setup after loading the view.
     NSURL *postURL = [NSURL URLWithString:self.post.image.url];
     [self.postImage setImageWithURL:postURL];
+    self.captionLabel.text = self.post.caption;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // Configure the input format to parse the date string
+//    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+//    // Configure output format
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterNoStyle;
+    self.timeStamp.text = [formatter stringFromDate:self.post.createdAt];
 }
 
 /*

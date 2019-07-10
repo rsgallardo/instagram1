@@ -39,9 +39,7 @@
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
-    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
+//    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -50,6 +48,8 @@
         NSLog(@"Camera 🚫 available so we will use photo library instead");
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+    
 }
 
 - (IBAction)didTapShare:(id)sender {
