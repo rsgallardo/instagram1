@@ -119,6 +119,12 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         Post *post = self.posts[indexPath.row];
         detailsViewController.post = post;
+    } else if ([segue.identifier isEqualToString:@"detailsSegue"]) {
+        UITableViewCell *tappedCell = sender;
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Post *post = self.posts[indexPath.row];
+        detailsViewController.post = post;
     }
 }
 

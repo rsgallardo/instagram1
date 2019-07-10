@@ -161,6 +161,7 @@
                                             <outlet property="image" destination="JW0-Pu-qfT" id="gfw-53-jev"/>
                                             <outlet property="usernameBottom" destination="fIu-wB-VGh" id="fyC-Oz-2Ml"/>
                                             <outlet property="usernameTop" destination="YV5-G4-BhX" id="251-Ed-zvR"/>
+                                            <segue destination="wpY-ZK-RZX" kind="show" identifier="detailsSegue" id="f7D-D4-3iZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -292,14 +293,55 @@
                     <view key="view" contentMode="scaleToFill" id="bxR-Ex-OPm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qW-q1-RkV">
+                                <rect key="frame" x="0.0" y="173" width="414" height="407"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vx-m2-96Y">
+                                <rect key="frame" x="20" y="124" width="112" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C43-yG-wNP">
+                                <rect key="frame" x="308" y="124" width="86" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDX-eS-I89">
+                                <rect key="frame" x="20" y="588" width="139" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rby-0J-rQH">
+                                <rect key="frame" x="20" y="617" width="60" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="QY9-OR-4Hg"/>
                     </view>
                     <navigationItem key="navigationItem" id="WfX-om-Mzv"/>
+                    <connections>
+                        <outlet property="captionLabel" destination="Rby-0J-rQH" id="oo8-4W-4oR"/>
+                        <outlet property="postImage" destination="7qW-q1-RkV" id="rB9-LC-qmn"/>
+                        <outlet property="timeStamp" destination="C43-yG-wNP" id="vUX-kG-7FE"/>
+                        <outlet property="usernameBottom" destination="ZDX-eS-I89" id="Mfl-uW-adN"/>
+                        <outlet property="usernameTop" destination="3vx-m2-96Y" id="uLe-sS-H40"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d36-Q5-bpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2883" y="838"/>
+            <point key="canvasLocation" x="2883" y="848"/>
         </scene>
     </scenes>
     <resources>

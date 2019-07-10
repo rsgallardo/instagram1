@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DetailsViewController : UIViewController
 
 @property (weak, nonatomic) Post *post;
+@property (weak, nonatomic) IBOutlet UIImageView *postImage;
+@property (weak, nonatomic) IBOutlet UILabel *usernameTop;
+@property (weak, nonatomic) IBOutlet UILabel *usernameBottom;
+@property (weak, nonatomic) IBOutlet UILabel *timeStamp;
+@property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 
 @end
 

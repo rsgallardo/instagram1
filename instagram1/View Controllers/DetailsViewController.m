@@ -7,6 +7,8 @@
 //
 
 #import "DetailsViewController.h"
+#import "UIImageView+AFNetworking.h"
+
 
 @interface DetailsViewController ()
 
@@ -17,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSURL *postURL = [NSURL URLWithString:self.post.image.url];
+    [self.postImage setImageWithURL:postURL];
 }
 
 /*
