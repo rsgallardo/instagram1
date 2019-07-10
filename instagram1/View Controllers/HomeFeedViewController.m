@@ -40,6 +40,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
@@ -84,22 +85,12 @@
     // assign the values for the post cell
     Post *post = self.posts[indexPath.row]; // set individual tweet based on index
     cell.post = post;
-    cell.usernameTop.text = post.userID;
-    cell.usernameBottom.text = post.userID;
+    cell.usernameTop.text = post.author.username;
+    cell.usernameBottom.text = post.author.username;
     cell.caption.text = post.caption;
-    
     NSURL *postURL = [NSURL URLWithString:post.image.url];
     [cell.image setImageWithURL:postURL];
-    NSLog(@"postURL: %@", postURL);
-    NSLog(@"Username: %@", cell.usernameTop.text);
-    NSLog(@"Caption: %@", cell.caption.text);
-//    cell.image = post.image;
-//    cell.date.text = tweet.createdAtString;
-//    [cell refreshRetweetAndFavorite];
-    // set the profile picture on the tweet
-//    NSURL *profileImgURL = [NSURL URLWithString:tweet.user.profileImgURL];
-//    cell.profilePicture.image = nil;
-//    [cell.profilePicture setImageWithURL:profileImgURL];
+
     return cell;
 }
 
