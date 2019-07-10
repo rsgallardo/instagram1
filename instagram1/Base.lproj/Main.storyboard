@@ -185,7 +185,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" id="dvG-kb-ocj">
                             <connections>
                                 <action selector="didTapCamera:" destination="9F4-5u-lZd" id="HjM-Wf-MkL"/>
-                                <segue destination="kRZ-d6-4AC" kind="presentation" id="4bF-d0-LTB"/>
+                                <segue destination="kRZ-d6-4AC" kind="presentation" identifier="postSegue" id="4bF-d0-LTB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

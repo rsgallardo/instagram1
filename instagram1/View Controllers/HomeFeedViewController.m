@@ -39,6 +39,7 @@
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 20;
+    [query orderByDescending:@"createdAt"];
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
@@ -51,7 +52,6 @@
             }
             // (7) Reload the table view
             [self.tableView reloadData];
-            
         } else {
             NSLog(@"Couldn't load home timeline: %@", error.localizedDescription);
         }
@@ -119,13 +119,17 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         Post *post = self.posts[indexPath.row];
         detailsViewController.post = post;
-    } else if ([segue.identifier isEqualToString:@"detailsSegue"]) {
-        UITableViewCell *tappedCell = sender;
-        DetailsViewController *detailsViewController = [segue destinationViewController];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-        Post *post = self.posts[indexPath.row];
-        detailsViewController.post = post;
+    } else if ([segue.identifier isEqualToString:@"postSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        // Pass the selected object to the new view controller.
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
     }
 }
+
+- (void)didPost {
+    [self getHomeFeed];
+}
+
 
 @end

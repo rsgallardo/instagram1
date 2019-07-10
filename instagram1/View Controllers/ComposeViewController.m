@@ -59,6 +59,7 @@
         } else {
             NSLog(@"Posted image successfully");
             [self dismissViewControllerAnimated:YES completion:nil];
+            [self.delegate didPost];
         }
     }];
 }

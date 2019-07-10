@@ -10,10 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+@protocol ComposeViewControllerDelegate
+
+- (void)didPost;
+
+@end
+
 @interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *uploadImage;
 @property (weak, nonatomic) IBOutlet UITextView *caption;
-
+@property (nonatomic, weak) id<ComposeViewControllerDelegate> delegate;
 - (IBAction)didTapCancel:(id)sender;
 - (IBAction)didTapOpenCamera:(id)sender;
 - (IBAction)didTapShare:(id)sender;
