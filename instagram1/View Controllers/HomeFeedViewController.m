@@ -93,6 +93,11 @@ static int queryLimit = 20;
     cell.caption.text = post.caption;
     NSURL *postURL = [NSURL URLWithString:post.image.url];
     [cell.image setImageWithURL:postURL];
+    //set profile image if user has one
+    if(post.author[@"profilePhoto"]) {
+        cell.profilePicture.file = post.author[@"profilePhoto"];
+        [cell.profilePicture loadInBackground];
+    }
     return cell;
 }
 
@@ -127,8 +132,6 @@ static int queryLimit = 20;
 -(void)loadMoreData{
     // get oldest post currently on feed
     Post *lastPost = self.posts[self.posts.count - 1];
-    NSLog(@"Last post caption: %@", lastPost);
-    NSLog(@"last post created at: %@", lastPost.createdAt);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdAt < %@", lastPost.createdAt];
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:predicate];

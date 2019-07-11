@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 #import "ComposeViewController.h"
+@import Parse;
 
 NS_ASSUME_NONNULL_BEGIN
 
