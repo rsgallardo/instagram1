@@ -88,8 +88,8 @@ static int queryLimit = 20;
     // assign the values for the post cell
     Post *post = self.posts[indexPath.row];
     cell.post = post;
-    cell.usernameTop.text = post.author.username;
-    cell.usernameBottom.text = post.author.username;
+    cell.usernameTop.text = post.author[@"username"];
+    cell.usernameBottom.text = post.author[@"username"];
     cell.caption.text = post.caption;
     NSURL *postURL = [NSURL URLWithString:post.image.url];
     [cell.image setImageWithURL:postURL];
@@ -98,6 +98,15 @@ static int queryLimit = 20;
         cell.profilePicture.file = post.author[@"profilePhoto"];
         [cell.profilePicture loadInBackground];
     }
+    //Set timestamp label
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // Configure the input format to parse the date string
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    // Configure output format
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterNoStyle;
+    cell.timeStamp.text = [formatter stringFromDate:cell.post.createdAt];
+    
     return cell;
 }
 
@@ -167,7 +176,6 @@ static int queryLimit = 20;
         // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
             self.isMoreDataLoading = true;
-            
             // ... Code to load more results ...
             [self loadMoreData];
         }

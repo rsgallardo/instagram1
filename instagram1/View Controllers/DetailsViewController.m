@@ -21,9 +21,9 @@
     // Do any additional setup after loading the view.
     NSURL *postURL = [NSURL URLWithString:self.post.image.url];
     [self.postImage setImageWithURL:postURL];
-    self.captionLabel.text = self.post.caption;
-    self.usernameTop.text = self.post.author.username;
-    self.usernameBottom.text = self.post.author.username;
+    self.captionLabel.text = self.post[@"caption"];
+    self.usernameTop.text = self.post.author[@"username"];
+    self.usernameBottom.text = self.post.author[@"username"];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     // Configure the input format to parse the date string
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
