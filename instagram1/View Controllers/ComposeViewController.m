@@ -8,6 +8,7 @@
 
 #import "ComposeViewController.h"
 #import "Post.h"
+@import MBProgressHUD;
 
 @interface ComposeViewController ()
 
@@ -53,11 +54,13 @@
 }
 
 - (IBAction)didTapShare:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Post postUserImage:self.uploadImage.image withCaption:self.caption.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(error != nil) {
             NSLog(@"Error posting image: %@", error.localizedDescription);
         } else {
             NSLog(@"Posted image successfully");
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
             [self.delegate didPost];
         }

@@ -9,6 +9,7 @@ target 'instagram1' do
   pod 'Parse'
   pod 'Parse/UI'
   pod 'AFNetworking'
+  pod 'MBProgressHUD'
 
   target 'instagram1Tests' do
     inherit! :search_paths

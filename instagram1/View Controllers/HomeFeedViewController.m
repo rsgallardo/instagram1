@@ -90,7 +90,7 @@ static int queryLimit = 20;
     cell.post = post;
     cell.usernameTop.text = post.author[@"username"];
     cell.usernameBottom.text = post.author[@"username"];
-    cell.caption.text = post.caption;
+    cell.caption.text = post[@"caption"];
     NSURL *postURL = [NSURL URLWithString:post.image.url];
     [cell.image setImageWithURL:postURL];
     //set profile image if user has one
