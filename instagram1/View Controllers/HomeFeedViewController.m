@@ -18,9 +18,13 @@
 
 @interface HomeFeedViewController ()
 
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+
 @end
 
 @implementation HomeFeedViewController
+
+static int queryLimit = 20;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,13 +42,13 @@
 - (void)getHomeFeed {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    query.limit = 20;
+    query.limit = queryLimit;
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            // (6) View controller stores data passed into completion handler do something with the array of object returned by the call
+            // (6) View controller stores data passed into completion handler do something with the array of objects returned by the call
             self.posts = [[NSMutableArray alloc] initWithArray:posts];
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             for (Post *post in posts) {
@@ -120,5 +124,51 @@
     [self getHomeFeed];
 }
 
+-(void)loadMoreData{
+    // get oldest post currently on feed
+    Post *lastPost = self.posts[self.posts.count - 1];
+    NSLog(@"Last post caption: %@", lastPost);
+    NSLog(@"last post created at: %@", lastPost.createdAt);
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdAt < %@", lastPost.createdAt];
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:predicate];
+    query.limit = queryLimit;
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *olderPosts, NSError *error) {
+        if (olderPosts != nil) {
+            // append older posts to end of self.posts
+            [self.posts addObjectsFromArray:olderPosts];
+            NSLog(@"😎😎😎 Successfully loaded older posts");
+            for (Post *post in self.posts) {
+                NSString *text = post.caption;
+                NSLog(@"%@", text);
+            }
+            // Update flag
+            self.isMoreDataLoading = false;
+            
+            // reload table view with new data
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Couldn't load older posts: %@", error.localizedDescription);
+        }
+    }];
+
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            
+            // ... Code to load more results ...
+            [self loadMoreData];
+        }
+    }
+}
 
 @end
