@@ -60,7 +60,6 @@
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    // grab instance of APIManager and get timeline
     [self getHomeFeed];
     [refreshControl endRefreshing];
 }
@@ -83,14 +82,13 @@
     // Use identifier to set cell
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     // assign the values for the post cell
-    Post *post = self.posts[indexPath.row]; // set individual tweet based on index
+    Post *post = self.posts[indexPath.row];
     cell.post = post;
     cell.usernameTop.text = post.author.username;
     cell.usernameBottom.text = post.author.username;
     cell.caption.text = post.caption;
     NSURL *postURL = [NSURL URLWithString:post.image.url];
     [cell.image setImageWithURL:postURL];
-
     return cell;
 }
 

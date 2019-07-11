@@ -26,7 +26,7 @@
     self.usernameBottom.text = self.post.author.username;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     // Configure the input format to parse the date string
-//    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     // Configure output format
     formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterNoStyle;
