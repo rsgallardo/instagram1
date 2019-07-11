@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+@import Parse;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProfileViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ProfileViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet PFImageView *profilePicture;
+- (IBAction)didTapProfileImage:(id)sender;
 
 @end
 

@@ -7,6 +7,7 @@ target 'instagram1' do
 
   # Pods for instagram1
   pod 'Parse'
+  pod 'Parse/UI'
   pod 'AFNetworking'
 
   target 'instagram1Tests' do
