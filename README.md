@@ -2,7 +2,7 @@
 
 **Instagram** is a photo sharing app using Parse as its backend.
 
-Time spent: **14** hours spent in total
+Time spent: **18** hours spent in total
 
 ## User Stories
 
@@ -39,14 +39,16 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How to add a comment section and show only the most recent/relevant comments
+2. The pros and cons of using PFUser and adding properties in the Parse dashboard instead of creating a model in the xcode project.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/THCJS18bGZrUXRFRdd/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+link to gif: https://media.giphy.com/media/THCJS18bGZrUXRFRdd/giphy.gif
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
