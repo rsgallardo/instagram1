@@ -14,7 +14,7 @@
 
 @interface ProfileViewController ()
 
-@property (weak, nonatomic) PFUser *currentUser;
+//@property (weak, nonatomic) PFUser *currentUser;
 
 @end
 
@@ -31,16 +31,20 @@
     CGFloat itemWidth = (self.collectionView.frame.size.width - 50) / postsPerRow;
     CGFloat itemHeight = itemWidth * 1.2;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
-    self.currentUser = [PFUser currentUser];
+    if(self.user == nil) {
+        self.user = [PFUser currentUser];
+    }
     [self getProfileFeed];
     [self setProfilePicture];
 }
 
 - (void)getProfileFeed {
     // construct query
-    self.usernameLabel.text = self.currentUser.username;
-    NSLog(@"User username: %@", self.currentUser.username);
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = %@", self.currentUser];
+//    self.usernameLabel.text = self.currentUser.username;
+    self.usernameLabel.text = self.user.username;
+    NSLog(@"User username: %@", self.user.username);
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = %@", self.currentUser];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = %@", self.user];
     PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:predicate];
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
@@ -84,32 +88,34 @@
 }
 
 - (IBAction)didTapProfileImage:(id)sender {
-    // Opens the camera and lets the user set a new profile image
-    NSLog(@"tapped camera image");
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
-    //    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    // Opens the camera and lets the user set a new profile image if the user is the current user
+    if(self.user == [PFUser currentUser]) {
+        NSLog(@"tapped camera image");
+        UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+        imagePickerVC.delegate = self;
+        imagePickerVC.allowsEditing = YES;
+        
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+        else {
+            NSLog(@"Camera 🚫 available so we will use photo library instead");
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        [self presentViewController:imagePickerVC animated:YES completion:nil];
+    } else {
+        NSLog(@"You can only change your own profile picture");
     }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-//    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     // Resize image to avoid memory issues in Parse
     UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(400, 400)];
-    self.currentUser[@"profilePhoto"] = [self getPFFileFromImage:resizedImage];
-    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+    self.user[@"profilePhoto"] = [self getPFFileFromImage:resizedImage];
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"successfully saved profile picture");
             [self setProfilePicture];
@@ -117,10 +123,6 @@
             NSLog(@"Error saving profile image: %@", error.localizedDescription);
         }
     }];
-    
-    
-//    NSURL *postURL = [NSURL URLWithString:self.currentUser[@"profilePhoto"].url];
-//    [self.profilePicture setImageWithURL:postURL];
     // Dismiss UIImagePickerController to go back to original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -136,11 +138,6 @@
     return newImage;
 }
 
-//- (void)reloadProfilePhoto {
-//
-////    self.profilePicture.image = PFUser.currentUser
-//}
-
 - (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
     // check if image is not nil
     if (!image) {
@@ -155,8 +152,7 @@
 }
 
 - (void)setProfilePicture {
-//    _profilePicture = post;
-    self.profilePicture.file = self.currentUser[@"profilePhoto"];
+    self.profilePicture.file = self.user[@"profilePhoto"];
     [self.profilePicture loadInBackground];
     
 }

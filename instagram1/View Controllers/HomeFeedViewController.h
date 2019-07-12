@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 #import "ComposeViewController.h"
+#import "PostCell.h"
 @import Parse;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeFeedViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ComposeViewControllerDelegate>
+@interface HomeFeedViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, ComposeViewControllerDelegate, PostCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;

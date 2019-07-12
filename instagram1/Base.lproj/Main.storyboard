@@ -119,14 +119,11 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIu-wB-VGh">
                                                     <rect key="frame" x="8" y="473" width="82" height="38"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="82" id="J6c-7A-MXq"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YV5-G4-BhX">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YV5-G4-BhX">
                                                     <rect key="frame" x="63" y="14.5" width="84" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="sa3-tn-hcs"/>
@@ -141,12 +138,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="L3K-mP-gyf" customClass="PFImageView">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="L3K-mP-gyf" customClass="PFImageView">
                                                     <rect key="frame" x="5" y="10" width="50" height="50"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="PNh-yY-AX2"/>
                                                         <constraint firstAttribute="width" constant="50" id="YvO-6d-tcq"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="d29-Lz-yv7" appends="YES" id="r8P-nf-KdZ"/>
+                                                    </connections>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time stamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8X-6a-PLD">
                                                     <rect key="frame" x="320.5" y="17" width="85.5" height="20.5"/>
@@ -158,6 +159,7 @@
                                             <constraints>
                                                 <constraint firstItem="YV5-G4-BhX" firstAttribute="centerY" secondItem="L3K-mP-gyf" secondAttribute="centerY" constant="-8" id="1az-JU-ygo"/>
                                                 <constraint firstItem="V0c-bm-Iqx" firstAttribute="leading" secondItem="fIu-wB-VGh" secondAttribute="leading" id="1bK-KP-84I"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fIu-wB-VGh" secondAttribute="trailing" constant="30" id="5k0-Y0-giT"/>
                                                 <constraint firstItem="I8X-6a-PLD" firstAttribute="centerY" secondItem="YV5-G4-BhX" secondAttribute="centerY" id="994-la-6i3"/>
                                                 <constraint firstItem="L3K-mP-gyf" firstAttribute="top" secondItem="57N-K8-33c" secondAttribute="top" constant="10" id="99G-dB-sq1"/>
                                                 <constraint firstItem="JW0-Pu-qfT" firstAttribute="top" secondItem="L3K-mP-gyf" secondAttribute="bottom" constant="5" id="FnQ-Zz-Tye"/>
@@ -215,6 +217,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOF-Ed-uCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="d29-Lz-yv7">
+                    <connections>
+                        <action selector="didTapUserProfile:" destination="9F4-5u-lZd" id="ePc-u5-HHv"/>
+                        <segue destination="ydQ-Ge-SU3" kind="show" identifier="profileSegue" id="gbC-VV-xRB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1931.8840579710147" y="118.52678571428571"/>
         </scene>
@@ -372,7 +380,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5042" y="119"/>
+            <point key="canvasLocation" x="3281" y="856"/>
         </scene>
         <!--Home-->
         <scene sceneID="8cl-XH-Y4t">
@@ -485,7 +493,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cbl-8e-gng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4155" y="119"/>
+            <point key="canvasLocation" x="3312" y="119"/>
         </scene>
     </scenes>
     <resources>
@@ -494,4 +502,7 @@
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="profile_tab" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gbC-VV-xRB"/>
+    </inferredMetricsTieBreakers>
 </document>
