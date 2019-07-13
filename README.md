@@ -66,6 +66,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 ## Notes
 
 Describe any challenges encountered while building the app.
+Implementing the ability for the user to tap the profile picture on any post and see that users profile was difficult because I had to use a delegate to make it work for cells besides the top post.
 
 ## License
 
