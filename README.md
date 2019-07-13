@@ -2,7 +2,7 @@
 
 **Instagram** is a photo sharing app using Parse as its backend.
 
-Time spent: **18** hours spent in total
+Time spent: **19** hours spent in total
 
 ## User Stories
 
@@ -36,6 +36,10 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
+- [x] Login page styled nicely but different than actual instagram
+- [x] Feed styled to real instagram except for lack of comments and date
+- [x] Show username and date (not creation time) for each post
+- [x] Profile photos are round
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -46,9 +50,9 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://media.giphy.com/media/THCJS18bGZrUXRFRdd/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/LmHYx795rlxVJy2wDI/giphy.gif' title='Video Walkthrough of login page and user profile' width='' alt='Video Walkthrough' />
 
-link to gif: https://media.giphy.com/media/THCJS18bGZrUXRFRdd/giphy.gif
+link to gif of other functionality: https://media.giphy.com/media/THCJS18bGZrUXRFRdd/giphy.gif
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
