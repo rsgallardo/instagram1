@@ -9,10 +9,6 @@
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
 
@@ -23,11 +19,9 @@
         configuration.server = @"https://instagram-rg.herokuapp.com/parse";
     }];
     [Parse initializeWithConfiguration:config];
-
     //check if user is logged in to persist their session
     if (PFUser.currentUser) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarNavigationVC"];
     }
     return YES;

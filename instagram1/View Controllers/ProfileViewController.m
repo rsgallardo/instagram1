@@ -42,10 +42,7 @@
 
 - (void)getProfileFeed {
     // construct query
-//    self.usernameLabel.text = self.currentUser.username;
     self.usernameLabel.text = self.user.username;
-    NSLog(@"User username: %@", self.user.username);
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = %@", self.currentUser];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = %@", self.user];
     PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:predicate];
     query.limit = 20;
@@ -63,16 +60,6 @@
         }
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     // Use identifier to set cell

@@ -20,7 +20,6 @@
 @interface HomeFeedViewController ()
 
 @property (assign, nonatomic) BOOL isMoreDataLoading;
-- (IBAction)didTapUserProfile:(id)sender;
 
 @end
 
@@ -86,7 +85,6 @@ static int queryLimit = 20;
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     // Use identifier to set cell
-//    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     cell.delegate = self;
     // assign the values for the post cell
@@ -138,12 +136,6 @@ static int queryLimit = 20;
     } else if ([segue.identifier isEqualToString:@"profileSegue"]) {
         ProfileViewController *profileController = [segue destinationViewController];
         profileController.user = sender;
-        // Pass selected object to the new view controller
-//        UITableViewCell *tappedCell = sender;
-//        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-//        Post *post = self.posts[indexPath.row];
-//        profileController.user = post.author;
-//        NSLog(@"User being passed: %@", post.author.username);
         NSLog(@"User being passed: %@", profileController.user.username);
     }
 }
