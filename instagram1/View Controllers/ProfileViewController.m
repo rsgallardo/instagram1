@@ -24,7 +24,9 @@
     [super viewDidLoad];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
+    //make profile image round
+    self.profilePicture.layer.cornerRadius = 0.5 * self.profilePicture.bounds.size.height;
+    self.profilePicture.layer.masksToBounds = YES;
     //set layout for collection view cells
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     CGFloat postsPerRow = 2;

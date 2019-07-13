@@ -14,6 +14,10 @@
     [super awakeFromNib];
     // add the tap gesture recognizer to every cell
     UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUserProfile:)];
+    //make profile picture circular
+    self.profilePicture.layer.cornerRadius = 0.5 * self.profilePicture.bounds.size.height;
+    self.profilePicture.layer.masksToBounds = YES;
+    //add tap gesture recognizer to profile picture
     [self.profilePicture addGestureRecognizer:profileTapGestureRecognizer];
     [self.profilePicture setUserInteractionEnabled:YES];
 }
